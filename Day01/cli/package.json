@@ -1,0 +1,28 @@
+{
+  "name": "engineering",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.1.0",
+    "fs-extra": "^10.0.0",
+    "inquirer": "^8.1.2",
+    "ora": "^6.0.0",
+    "semver": "^7.3.5",
+    "server": "^1.0.35"
+  },
+  "bin": {
+    "smt": "bin/smt.js",
+    "smt_test": "bin/smt_test.js"
+  },
+  "engines": {
+    "node": "14.17.2"
+  }
+}
