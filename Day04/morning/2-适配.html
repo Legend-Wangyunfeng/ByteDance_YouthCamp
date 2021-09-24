@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <title>Document</title>
+  <script>
+    (function () {
+      var metaEl = document.createElement('meta');
+      var scale = devicePixelRatio;
+      metaEl.setAttribute('name', 'viewport');
+      metaEl.setAttribute('content', 'initial-scale=' + (1/scale) + ', maximum-scale=' + (1/scale) + ', minimum-scale=' + (1/scale) + ', user-scalable=no');
+      document.documentElement.firstElementChild.appendChild(metaEl);
+    })();
+    (function() {
+      console.log(window.innerWidth)
+      var doc = document.documentElement;
+      doc.style.fontSize = window.innerWidth/15 + "px";
+    })();
+  </script>
+  <style>
+    body {
+      margin: 0;
+    }
+    #box {
+      display: flex;
+    }
+    #box div{
+      width: 50vw;
+      height: 36vw;
+      background-color: red;
+      margin: 0 0.2rem;
+      font-size: 5vw;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div>尖货抽签</div>
+    <div>新品日历</div>
+  </div>
+</body>
+</html>

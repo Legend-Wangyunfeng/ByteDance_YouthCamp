@@ -43,17 +43,20 @@
                   },
                   set(target, key, val) {
                     if(target.setupState && key in target.setupState) {
-                      return target.setupState[key]
+                      target.setupState[key] = val
                     }
                     else {
-                      return target.data[key]
+                      target.data[key] = val
                     }
                   }
                 })
-                const el = options.render.call(proxy)
-                parent.innerHTML = ''
-                // parent.appendChild(el)
-                insert(el, parent)
+                this.update = function () {
+                  const el = options.render.call(proxy)
+                  parent.innerHTML = ''
+                  // parent.appendChild(el)
+                  insert(el, parent)
+                }
+                this.update()
               },
               compile(template) {
                 return function render() {
@@ -78,8 +81,19 @@
         return renderer.createApp(options)
       }
       
-    }
+    };
 
+    function reactive(obj) {
+      return new Proxy(obj, {
+        get(target, key) {
+          return target[key]
+        },
+        set(target, key, val) {
+          target[key] = val
+          app.update()
+        }
+      })
+    } 
     const app = Vue.createApp({
       data() {
         return {
@@ -87,9 +101,13 @@
         }
       },
       setup() {
-        return {
+        const state = reactive({
           title: 'vue3, hello!'
-        }
+        })
+        setTimeout(() => {
+          state.title = 'hello, vue3!'
+        },2000)
+        return state
       }
     })
     app.mount('#app')
